@@ -67,32 +67,42 @@ src/
   25 MiB per-file limit and is hosted as a GitHub Release asset instead. See
   [release-assets/README.md](release-assets/README.md).
 
-## Hosting: Cloudflare Pages
+## Hosting: Cloudflare Workers (static assets)
 
-The site is hosted on Cloudflare Pages at `rhythmrascal.com` (DNS is also at Cloudflare).
+The site is hosted on Cloudflare Workers as a static-assets-only Worker at `rhythmrascal.com`
+(DNS is also at Cloudflare). This is Cloudflare's current recommended platform for static sites;
+it supports the same `_redirects` and `_headers` files as Cloudflare Pages.
 
-**Project settings** (Workers & Pages, Create, Pages, Connect to Git):
+**Project settings** (Workers & Pages, Create, Import a repository):
 
-| Setting                | Value           |
-| :--------------------- | :-------------- |
-| Production branch      | `main`          |
-| Framework preset       | Astro           |
-| Build command          | `npm run build` |
-| Build output directory | `dist`          |
+| Setting          | Value                |
+| :--------------- | :------------------- |
+| Production branch| `main`               |
+| Build command    | `npm run build`      |
+| Deploy command   | `npx wrangler deploy`|
+| Path             | `/`                  |
 
-Node version is pinned by `.node-version` (22). No environment variables are needed.
+There is no "output directory" field; `wrangler.jsonc` points Wrangler at `dist/`. Node version
+is pinned by `.node-version` (22). No environment variables are needed. `wrangler` is a dev
+dependency so the deploy step uses a known version.
 
-**Custom domain:** in the Pages project, Custom domains, add `rhythmrascal.com` and `www.rhythmrascal.com`.
-Cloudflare creates the DNS records and certificates automatically. `public/_redirects` sends `www`
-to the apex domain.
+**Custom domain:** `wrangler.jsonc` declares `rhythmrascal.com` and `www.rhythmrascal.com` as custom
+domains, so the first deploy attaches them and Cloudflare creates DNS records and certificates.
+`public/_redirects` sends `www` to the apex domain.
 
-**Files Cloudflare Pages reads from `public/`:**
+**Files Cloudflare reads from the build output:**
 
 - `_redirects`: 301s from the old `.aspx` URLs, `www` to apex, and the moved sample pack.
 - `_headers`: long-lived immutable caching for installers, music, images, and hashed assets.
-- `404.html` (built from `src/pages/404.astro`) is served automatically for unknown paths.
+- `404.html` (built from `src/pages/404.astro`) is served for unknown paths via `not_found_handling`.
 
-Every push to `main` deploys production; pushes to other branches get preview URLs.
+Every push to `main` deploys production; pushes to other branches upload preview versions.
 
 If the production domain ever changes, update `site` in `astro.config.mjs` (used for canonical and
-Open Graph URLs) and the `www` rule in `public/_redirects`.
+Open Graph URLs), the `routes` in `wrangler.jsonc`, and the `www` rule in `public/_redirects`.
+
+To deploy manually from a machine that is logged in with `npx wrangler login`:
+
+```bash
+npm run build && npx wrangler deploy
+```

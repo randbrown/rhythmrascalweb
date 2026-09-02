@@ -1,0 +1,23 @@
+// Cloudflare Workers configuration (static assets only, no Worker script).
+// Used by `npx wrangler deploy` in Cloudflare Workers Builds after `npm run build`.
+// https://developers.cloudflare.com/workers/static-assets/
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "rhythmrascalweb",
+  "compatibility_date": "2026-06-01",
+  "assets": {
+    // Astro's build output. This is the equivalent of the Pages "build output directory".
+    "directory": "./dist",
+    // Serve dist/404.html with a 404 status for unknown paths.
+    "not_found_handling": "404-page",
+    // Astro emits /features/index.html; serve it at /features/ and redirect /features to it.
+    "html_handling": "auto-trailing-slash"
+  },
+  // Bind the domain here so it is versioned with the code. Cloudflare creates the
+  // DNS records automatically because the zone is on the same account.
+  "routes": [
+    { "pattern": "rhythmrascal.com", "custom_domain": true },
+    { "pattern": "www.rhythmrascal.com", "custom_domain": true }
+  ],
+  "observability": { "enabled": false }
+}
