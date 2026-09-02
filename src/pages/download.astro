@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { sampleZipUrl } from '../data/nav';
+
+const currentBuild = '3.4.6518.35601';
+const currentBuildDate = '11/05/2017';
+
+const oldVersions = [
+  { version: '3.3', note: '' },
+  { version: '3.2', note: '' },
+  { version: '3.1', note: '' },
+  { version: '3.0', note: '' },
+  { version: '2.5', note: 'This is the last release of version 2.5 using the .NET Framework 3.5SP1.' },
+  { version: '2.2', note: 'This is the last release of version 2.2 using the .NET Framework 2.0.' },
+  { version: '2.1', note: 'This is the last release of version 2.1.' },
+  {
+    version: '2.0',
+    note: 'This is the last release of version 2.0 using the .NET framework 1.1. This is only provided in case you cannot upgrade to the new .NET framework 2.0.',
+  },
+  {
+    version: '1.5',
+    note: 'This is the last release of version 1. This is recommended for all version 1 registered users who have not upgraded to version 2.',
+  },
+];
+---
+
+<BaseLayout title="Download" description="Download Rhythm Rascal drum machine software for Windows, free WAV drum samples, the users guide, and previous versions.">
+  <h3>Rhythm Rascal Drum Software</h3>
+  <h3>System Requirements</h3>
+  <ul>
+    <li>Operating System: Microsoft Windows 10/8/7/XP/Vista/2003/2008.</li>
+    <li>
+      .NET framework runtime version 4.0 or later. The Rhythm Rascal Setup program will detect if you don't have this
+      installed, and prompt you to install it. Click
+      <a href="https://dotnet.microsoft.com/download/dotnet-framework" target="_blank" rel="noopener">here</a>
+      to download it if you prefer to install it separately.
+    </li>
+    <li>
+      DirectX 9 (or later). Click
+      <a href="https://www.microsoft.com/download/details.aspx?id=35" target="_blank" rel="noopener">here</a>
+      to download it if you don't already have it.
+    </li>
+    <li>Recommended hardware: 1 GHz or faster, 1GB or more RAM.</li>
+  </ul>
+
+  <h3>Software Download</h3>
+  <p>
+    Build {currentBuild} ({currentBuildDate}) (<a href="/whatsnew/">what's new?</a>)
+  </p>
+  <p class="big-link">
+    <a href="/Download/RhythmRascalSetup.zip">
+      <span class="brightLink">Click here to download Rhythm Rascal version 3.4 (zip)</span>
+    </a>
+  </p>
+  <p>
+    The unregistered version of this program is fully functional, except for the song mixdown feature. The mixdown will
+    contain audible &quot;clicks&quot; throughout the song drum track. By registering the program, the drum track
+    mixdown will not impose this limitation.
+  </p>
+
+  <h3>Installation</h3>
+  <p>Download the zip file above, open it and run <b>Setup.exe</b> and follow the instructions.</p>
+
+  <h3>WAV Sample files from ORIGINAL-MUSIC</h3>
+  <p class="medium-link">
+    <a href={sampleZipUrl}>
+      <span class="brightLink">Click here to download free WAV sample drum sounds (zip)</span>
+    </a>
+  </p>
+  <p>
+    <span class="brightLink">
+      <a href="http://www.original-music.co.uk/" target="_blank" rel="noopener">ORIGINAL-MUSIC (http://www.original-music.co.uk/)</a>
+    </span>
+    has provided a free set of their high quality audio sample files for Rhythm Rascal users. Click
+    <span class="brightLink"><a href={sampleZipUrl}>here</a></span>
+    to download a zip file containing the files. Unzip the contents to your hard drive and drag the contained sample
+    files into your drum kit window to use them. The wav hits featured here are from their product
+    <span class="brightLink">
+      <a href="http://www.original-music.co.uk/live-acoustic-drums-loops-and-hits.php" target="_blank" rel="noopener">Live Acoustic Drums, Loops &amp; Hits</a>
+    </span>. Please visit the Original Music website to find even more drum samples.
+  </p>
+
+  <h3>Users Guide</h3>
+  <p>
+    The users guide (PDF) is included with the setup. You can also click
+    <a href="/Download/Quick%20Start%20Guide.pdf"><span class="brightLink">here</span></a>
+    to download it separately.
+  </p>
+  <p>
+    You will need a PDF reader such as the free Adobe Acrobat Reader to read the users guide. If you don't have it, you
+    can download it from the Adobe Web Site:
+  </p>
+  <p>
+    <a href="https://get.adobe.com/reader/" target="_blank" rel="noopener">
+      <img alt="Get Adobe Acrobat Reader" height="31" src="/images/getacro.gif" width="88" />
+    </a>
+  </p>
+
+  <h1>Previous Versions of Rhythm Rascal</h1>
+  {
+    oldVersions.map(({ version, note }) => (
+      <p>
+        <a href={`/Download/OldVersions/RhythmRascalSetup.v${version}.zip`}>Click here to download version {version}</a>
+        {' '}(zip).{note ? ` ${note}` : ''}
+      </p>
+    ))
+  }
+</BaseLayout>

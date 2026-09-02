@@ -1,0 +1,398 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface Build {
+  build: string;
+  date: string;
+  /** Optional lead-in shown before the bullet list. */
+  note?: string;
+  changes: string[];
+}
+
+interface Version {
+  name: string;
+  builds: Build[];
+}
+
+// Change items may contain simple inline HTML (links, bold, italics).
+const history: Version[] = [
+  {
+    name: 'Version 3',
+    builds: [
+      {
+        build: '3.4.6518.35601',
+        date: '11/05/2017',
+        changes: ['Fixed MIDI tempo for 6/8 and other time signatures.', 'Upgraded 3rd party controls'],
+      },
+      {
+        build: '3.3.4623.39618',
+        date: '8/28/2012',
+        changes: [
+          'Fixed Closed Stream problem when mixing down to separate pad output tracks in unregistered mode, or when metronome is enabled.',
+          'Fixed pattern sorting bug where sorting the pattern list caused the pattern details to be wrong.',
+        ],
+      },
+      {
+        build: '3.3.4613.40403',
+        date: '8/18/2012',
+        changes: [
+          'Fixed math rounding issue during mixdown, to give more precise tempo in output file.',
+          'Fixed OutOfMemoryException problem when mixing down to separate pad output tracks.',
+          'Upgraded 3rd party controls',
+        ],
+      },
+      {
+        build: '3.2.4137.38858',
+        date: '4/30/2011',
+        changes: [
+          'New option for Spacebar to start/stop playback',
+          'Updated audio mixdown engine for better performance and wider range of sample types including 16/24/32-bit and additional sample rates such as 48kHz',
+          'Miscellaneous enhancements and corrections',
+        ],
+      },
+      {
+        build: '3.1.4006.28996',
+        date: '12/20/2010',
+        changes: [
+          'New WAV samples included from <span class="brightLink"><a href="http://www.original-music.co.uk/" target="_blank" rel="noopener">ORIGINAL-MUSIC (http://www.original-music.co.uk/)</a></span>.',
+          'New feature: Auto-Update. Rhythm Rascal will now check for new versions each time it starts.',
+          'Save dialogs will now default to the Rhythm Rascal project data folder if the current folder is read-only or the installation folder.',
+          'WAV mixdown progress bar now shows that there is progress while saving the mixdown to disk.',
+          'New link to main Rhythm Rascal web site in the Help menu.',
+          'Miscellaneous enhancements and corrections',
+        ],
+      },
+      {
+        build: '3.0.3984.37596',
+        date: '11/28/2010',
+        changes: [
+          'New feature: WAV Mixdown can now split the stereo track to separate mono tracks.',
+          'New feature: WAV Mixdown can now split each drum pad to separate tracks so you can isolate each pad individually in your audio applications.',
+          'New feature: WAV mixdown can now include the metronome.',
+          'New feature: Count-in feature to count in with metronome for one extra measure before the song starts.',
+          'New feature: Pattern list now can show other properties in the grid (double click the icon in the upper left corner of the grid to choose fields)',
+          'New feature: New Sort Order properties in Kit and Patterns for sorting the items in the list.',
+          'Added two new sample song files (rock and metal styles).',
+          'Upgraded to VS2010 and .NET 4.0, and new UI tools.',
+          'Miscellaneous enhancements and corrections',
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Version 2.5',
+    builds: [
+      {
+        build: '2.5.3223.14771',
+        date: '10/29/2008',
+        changes: [
+          '<b>[You only need this release if you have 64-bit Windows]</b> Updated to run on x64 in x86 mode. If you already have 2.5.3220.28467 installed and working, you do not need this update.',
+        ],
+      },
+      {
+        build: '2.5.3220.28467',
+        date: '10/25/2008',
+        changes: [
+          'New feature: Color grid header Red to indicate the step playback.',
+          'New feature: Scroll the track editor during playback to ensure the currently playing beat is visible in the window.',
+          'New feature: Display the number of pattern plays in the toolbar. For example if a song part specifies to play a pattern 3 times, the toolbar will show 1/3, 2/3, 3/3 to indicate how many times the pattern has been played.',
+          'Enhancement: Increased mixdown to WAV speed.',
+          'Enhancement: Remove the extra blank space at the end of the rendered WAV file.',
+          'FIX: Use more precision in rendering calculations to correct the slight tempo problems in rendered WAV file.',
+          'FIX: fixed relative filename error in zip export/import',
+          'Upgraded to VS2008 and .NET 3.5, and new UI tools',
+          'Minor code changes for maintainability, additional debugging support.',
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Version 2.2',
+    builds: [
+      {
+        build: '2.2.2722.43142',
+        date: '6/16/2007',
+        changes: [
+          'Fixed registry access permission issue with Windows Vista.',
+          'Decreased size of the drum hit squares in order to fit more on the screen.',
+          'Minor code changes for maintainability.',
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Version 2.1',
+    builds: [
+      {
+        build: '2.1.2353.40583',
+        date: '6/11/2006',
+        changes: [
+          'Upgraded to .NET Framework version 2.0',
+          'Upgraded to new UI tools.',
+          'Fixed window state problem, where if you had closed Rhythm Rascal while minimized, it would start minimized next time.',
+          'Fixed Humanization problem, where if you disabled the feature it would use max volume randomization.',
+          'Better compatibility with WAV files.',
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Version 2.0',
+    builds: [
+      {
+        build: '2.0.2105.41804',
+        date: '10/7/2005',
+        changes: [
+          'All new look with updated toolbars and more useful right-click menus.',
+          'New MIDI export feature exports to MIDI formats 0 and 1.',
+          'All fields (BPM, beats, volume, etc) update instantly now.',
+          'Now compatible with more wav sample files, including the <a href="http://www.naturalstudio.co.uk/ns_kit7freedownload.html" target="_blank" rel="noopener">NS_Kit7</a> samples.',
+          'Added new options for master volume control.',
+          'Added Copy/Paste of patterns, song parts, and drum pads.',
+          'Faster WAV mixdown!',
+          'More control over wav sample folder locations.',
+          'New "Funk it up!" feature to add random syncopation to a pattern.',
+          'You can now drag/drop WAV or RRP files onto the main form.',
+          'New grid view option for drum kit panel.',
+          "Fixed problem where currently playing pattern/part/step didn't always show up.",
+          'And many more new features and enhancements!',
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Version 1.5',
+    builds: [
+      {
+        build: '1.5.2026.40971',
+        date: '7/19/2005',
+        changes: [
+          'Renamed some menu items to be easier to understand.',
+          'Made the tempo update immediately when you either hit Enter, click the mouse, or tab away from the tempo control.',
+          'Removed "Hide pattern designer..." options, since that was buggy, and didn\'t really help anyway.',
+          'Better temp file management. When running more than one RR, they no longer clobber each others temp files.',
+          'Better error handling when a sample file cannot be loaded.',
+          'Check for read-only files when processing sample files.',
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Version 1.4',
+    builds: [
+      {
+        build: '1.4.1933.1798',
+        date: '4/17/2005',
+        changes: [
+          'Added new Humanization feature to insert random velocity and timing offsets into the wave mixdown, to relax the sound and make it less mechanical sounding. Configure this in the <i>Options-&gt;Mixdown</i> screen.',
+          'Fixed playback problems some users were experiencing with certain drum pads (mostly the bass drum pad), where it would "cut out" or lose volume.',
+          'New options on the Load Kit from another Song and Load Patterns from another Song screens. These let you control how it merges the drum kits.',
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Version 1.3',
+    builds: [
+      {
+        build: '1.3.1915.43136',
+        date: '3/30/2005',
+        changes: [
+          'Fixed playback latency for some users of Windows XP. This was due to the timer resolution on some platforms.',
+          'Validate the sample files when loading them from another song.',
+        ],
+      },
+      {
+        build: '1.3.1912.557',
+        date: '3/27/2005',
+        changes: ['Fixed error stating that the sample has invalid sample rate when adding a pad to the drum kit.'],
+      },
+      {
+        build: '1.3.1910.31239',
+        date: '3/25/2005',
+        changes: [
+          'Improved playback engine with less latency.',
+          'Added template patterns. Includes Rock and Metal patterns, and you can customize them and create new ones. Use <i>Edit-&gt;Pattern-&gt;New Pattern from Template</i> from the file menu or by right-clicking the pattern list.',
+          'New double-click to play option so you can simply double-click a pattern, song part, or pad to play it.',
+          'New Play button on right-click menus of the song parts and patterns.',
+          'Added Load Patterns From Another Song to the Tools menu. This lets you load patterns from another song you have already written.',
+          'You can now select the pads you want when you use the Load Kit From Another Song.',
+          'Added options for hiding the pattern designer during playback for performance issues on slower computers.',
+          'Song parts are now automatically selected when you drag and drop them onto the sequence grid.',
+          'Other minor fixes and enhancements.',
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Version 1.2',
+    builds: [
+      {
+        build: '1.2.1891.41233',
+        date: '3/6/2005',
+        changes: [
+          'Fixed problem when you try to enter a pattern longer than 64 total steps (Beats * Notes per beat).',
+          'Added "Delete" to menus for deleting Patterns, Song Parts, Pads, or Pattern Tracks. You can still delete them by using the Delete key on your keyboard too.',
+          'Other minor fixes and enhancements.',
+        ],
+      },
+      {
+        build: '1.2.1874.651',
+        date: '2/17/2005',
+        changes: [
+          'Fixed occasional blanked out BPM, Beats, Pattern Tempo, etc.',
+          'Fixed GOODSNARE! wav sample file. It was corrupt and would sometimes cause loss of volume.',
+          'Browse buttons on Options screen are working correctly now.',
+          'More accurate volume and pan for pads. Note that the overall volume of the mixdown is still quieter than during playback, but the relative volume and pan of each sample should be the same as during playback.',
+        ],
+      },
+      {
+        build: '1.2.1869.42872',
+        date: '2/12/2005',
+        changes: [
+          'More information in message when a sample pad fails to load.',
+          'Mixdown file is released in case of error, so you can try again without changing the file name.',
+          'Fixed the "object reference not set to instance of an object" error during mixdown if you had blank pad names in a pattern.',
+          'Fixed pattern list scrollbar to behave more normally.',
+          'The Help Contents document (PDF) has been updated to reflect recent changes.',
+        ],
+      },
+      {
+        build: '1.2.1856.5175',
+        date: '1/30/2005',
+        changes: [
+          'Now each hit (beat) is toggled with a single mouse click instead of double-click.',
+          'New feature to automatically play a song when it is opened in Rhythm Rascal. Note this is not turned on by default. Use "<i>Options-&gt;Song-&gt;Automatically play songs when opened</i>" to enable this new feature.',
+          'Changed "Import project from zip" feature to let users select the destination folder, and to allow overwriting existing files.',
+          'Other internal enhancements for performance.',
+          "Setup.exe (the installer) *should* now uninstall the previous version when you are doing an upgrade, so you don't have to uninstall it yourself.",
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Version 1.1',
+    builds: [
+      {
+        build: '1.1.1845.1985',
+        date: '1/19/2005',
+        changes: [
+          'New splash screen when application launches.',
+          'Metronome enabled on startup if it was enabled when the app last shut down.',
+        ],
+      },
+      {
+        build: '1.1.1839.2570',
+        date: '1/13/2005',
+        changes: [
+          'Fixed bad HiHat Closed sample wav file so it does not "wimp out" during playback (lost volume).',
+          'New default drum kit with better (and more) samples.',
+          'Removed the sub-beat step indicator, since this was a performance problem for some people and it was not particularly useful.',
+          'Now installs to Program Files\\Rhythm Rascal.',
+        ],
+      },
+      {
+        build: '1.1.1829.18516',
+        date: '1/3/2005',
+        changes: ['Fixed problem occurring on some systems during startup.', 'More debugging information in case of error.'],
+      },
+      {
+        build: '1.1.1814.2004',
+        date: '12/19/2004',
+        changes: ['Fixed default Playback mode toolbar option.', 'More debugging information in case of error.'],
+      },
+      {
+        build: '1.1.1812.496',
+        date: '12/17/2004',
+        changes: [
+          'Always open in "Song" mode when opening a song. Only default to "Pattern" mode when creating a new file.',
+          "Removed obsolete \"Pad\" mode. Pads are more easily played by using the play buttons beside each pad's name.",
+          'Minor bug fixes',
+        ],
+      },
+      {
+        build: '1.1.1791.21952',
+        date: '11/26/2004',
+        changes: [
+          'Changed Song Sequence window to be a top-to-bottom view of the song, rather than left-to-right. This saves space, and makes it easier to drag patterns into the song.',
+          'Default the playback mode to "Song" when opening an existing song.',
+          'Enhancements to more clearly indicate the selected pattern or song part',
+        ],
+      },
+      {
+        build: '1.1.1785.19199',
+        date: '11/20/2004',
+        changes: [
+          'Added option to disable advanced tool tip help.',
+          'Patterns can now be renamed in the pattern list.',
+          "New \"Add pad track to pattern\" in right-click menu for patterns. For example if you've added a new pad to the drum kit after you first created a pattern, use this feature to add the pad to the pattern.",
+          'Enhancements to drop down lists.',
+          'Minor bug fixes and enhancements.',
+        ],
+      },
+      {
+        build: '1.1.1780.41747',
+        date: '11/16/2004',
+        changes: [
+          'Fixed problem with the Import Project From Zip item on the Tools menu.',
+          'Fixed bug where using mouse wheel on the Pad field causes application error.',
+          'Fixed Reset Toolbar Layout and Reset Window Layout options.',
+          'Minor bug fixes and enhancements.',
+        ],
+      },
+      {
+        build: '1.1.1771.1449',
+        date: '11/6/2004',
+        changes: [
+          'Added color selection for each drum pad, to make it easier to recognize your drum pads at a glance.',
+          'Added play buttons beside each pad in the pattern editor for easier real-time recording.',
+          'Minor bug fixes and enhancements.',
+        ],
+      },
+      {
+        build: '1.1.1762.40589',
+        date: '10/28/2004',
+        changes: [
+          'Changed pattern hit display from square to Red LED displays make it even easier to read.',
+          'Display beat and step (sub beat), rather than just total step number.',
+          'Changed background colors to be more theme-friendly',
+        ],
+      },
+      {
+        build: '1.1.1758.1311',
+        date: '10/24/2004',
+        changes: [
+          'Changed pattern hit display from checkbox to solid square to make it easier to read.',
+          'Visualize the pattern each time you select a song part in the song sequence window.',
+          'Minor bug fixes and enhancements.',
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Version 1.0',
+    builds: [{ build: '1.0.1756.41303', date: '10/23/2004', changes: ['Minor bug fixes.'] }],
+  },
+];
+---
+
+<BaseLayout title="Version History" description="Rhythm Rascal version history and release notes, from version 1.0 in 2004 through version 3.4.">
+  <h3>Version History</h3>
+  {
+    history.map((version) => (
+      <section>
+        <h3>{version.name}</h3>
+        {version.builds.map((b) => (
+          <>
+            <p>
+              Build {b.build} ({b.date})
+            </p>
+            <ul>
+              {b.changes.map((c) => <li set:html={c} />)}
+            </ul>
+          </>
+        ))}
+      </section>
+    ))
+  }
+</BaseLayout>

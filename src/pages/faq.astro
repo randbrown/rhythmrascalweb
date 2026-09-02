@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { sampleZipUrl } from '../data/nav';
+---
+
+<BaseLayout title="FAQ" description="Frequently asked questions about Rhythm Rascal drum machine software: registration codes, drum samples, time signatures, playback lag, and installation.">
+  <h3>Frequently Asked Questions</h3>
+
+  <h1>I registered Rhythm Rascal, but never received a registration code. How do I get the reg code?</h1>
+  <blockquote>
+    <p>
+      The registration code is sent to your email address. Check your junk/spam folder to see if it is there. If not,
+      then use the <a href="/contact/">Contact page</a> to send me an email, and I can resend the code to you. Make sure
+      that brown.randy at gmail dot com is added to your allowed sender list, so my email response won't get filtered.
+    </p>
+  </blockquote>
+
+  <h1>Where can I find good drum samples to use with Rhythm Rascal?</h1>
+  <blockquote>
+    <p>
+      Rhythm Rascal comes with a good set to get you started.&nbsp; Look under the installation folder (usually
+      C:\Program Files\Rhythm Rascal\Rhythm Rascal), under the &quot;sounds&quot; folder.
+    </p>
+    <p>
+      <span class="brightLink">
+        <a href="http://www.original-music.co.uk/" target="_blank" rel="noopener">ORIGINAL-MUSIC (http://www.original-music.co.uk/)</a>
+      </span>
+      has provided a free set of their high quality audio sample files for Rhythm Rascal users. Click
+      <span class="brightLink"><a href={sampleZipUrl}>here</a></span>
+      to download a zip file containing the files. Unzip the contents to your hard drive and drag the contained sample
+      files into your drum kit window to use them. The wav hits featured here are from their product
+      <span class="brightLink">
+        <a href="http://www.original-music.co.uk/live-acoustic-drums-loops-and-hits.php" target="_blank" rel="noopener">Live Acoustic Drums, Loops &amp; Hits</a>
+      </span>. Please visit the Original Music website to find even more drum samples.
+    </p>
+    <p>If you're still hungry for more, check out the following sites *:</p>
+    <ul>
+      <li>
+        <a href="http://www.naturalstudio.co.uk/ns_kit7freedownload.html" target="_blank" rel="noopener">http://www.naturalstudio.co.uk/ns_kit7freedownload.html</a>
+      </li>
+      <li><a href="http://samples.kb6.de/downloads.php" target="_blank" rel="noopener">http://samples.kb6.de/downloads.php</a></li>
+      <li><a href="https://www.looperman.com" target="_blank" rel="noopener">http://www.looperman.com</a></li>
+      <li><a href="http://www.audiopervert.com" target="_blank" rel="noopener">http://www.audiopervert.com</a></li>
+    </ul>
+    <p>
+      You can also just try a Google search... try keyword phrases like &quot;drum samples&quot; or &quot;download drum
+      samples&quot;.<br />
+      <br />
+      Rhythm Rascal should be able to handle most WAV files. If you find samples in mp3 or other format, you can use
+      Windows Sound Recorder to save them in WAV format, then use them in Rascal.&nbsp; Rhythm Rascal seems to work best
+      with samples at least about 200 milliseconds long.
+    </p>
+  </blockquote>
+
+  <h1>What kinds of music can I write with Rhythm Rascal?</h1>
+  <blockquote>
+    <p>
+      It was designed for traditionally &quot;non-electronic&quot; styles, such as Metal, Rock, Jazz, Blues, and just
+      about any other type of music that usually has a drummer.
+    </p>
+    <p>
+      Rhythm Rascal was built to handle the demanding needs of these genres, such as tempo changes, time signature
+      changes, and complex songs with many patterns.
+    </p>
+  </blockquote>
+
+  <h1>Are patterns the same as musical measures or bars?</h1>
+  <blockquote>
+    <p>
+      Rhythm Rascal is based on the concept of a pattern or &quot;riff&quot;.&nbsp; Each pattern in Rhythm Rascal will
+      usually correspond to a riff on the guitar. You create a song by writing riffs (patterns), then arranging them in
+      sequence throughout the song.
+    </p>
+    <p>
+      A pattern may be a measure, but not necessarily.&nbsp; Commonly, a pattern will equate to more than one
+      measure.&nbsp; For example, you can create a pattern with 8 quarter note beats, and 3 notes per beat, which
+      effectively gives you the equivalent of 2 measures of 4/4 time with eighth-note triplets.
+    </p>
+  </blockquote>
+
+  <h1>What is a good multi-track recording software package to use with Rhythm Rascal?</h1>
+  <blockquote>
+    <p>
+      There are many good packages out there.&nbsp; I suggest using
+      <a href="https://ntrack.com" target="_blank" rel="noopener">N-Track Studio</a>.&nbsp; Other great applications are
+      <a href="https://www.adobe.com/products/audition.html" target="_blank" rel="noopener">Adobe Audition</a>
+      (formerly Cool Edit Pro), and the
+      <a href="https://www.bandlab.com/products/cakewalk" target="_blank" rel="noopener">Cakewalk</a>
+      family of products. *
+    </p>
+  </blockquote>
+
+  <h1>
+    During playback, sometimes it seems to lag a little bit, especially at higher tempos or on slower computers.&nbsp;
+    What can I do to remedy this?
+  </h1>
+  <blockquote>
+    <p>
+      The extra overhead required to update the beat number in the toolbar sometimes causes a lag.&nbsp; To disable
+      this, click the arrow next to the toolbar to customize it.&nbsp; Then find the &quot;Playback-&gt;Beat
+      Playing&quot; item and make sure it is not checked. This can help speed things up some.
+    </p>
+    <p>
+      <img height="383" src="/images/faq-image1.jpg" width="415" alt="Toolbar customization menu showing the Beat Playing item" />
+    </p>
+    <p>You can always add it back later by checking the item.</p>
+  </blockquote>
+
+  <h1>I tried that but it still lags a little sometimes.&nbsp; What should I do?</h1>
+  <blockquote>
+    <p>
+      For various reasons, Rhythm Rascal tends to lag noticeably on some computers during playback. (However, the WAV
+      mixdown will be precise with no lag at all.) Most people never observe this issue, but it is a problem on some
+      machines.&nbsp; This limitation is something you will have to consider before paying for Rhythm Rascal.&nbsp; If
+      the trial (unregistered) version lags on your computer, registering will <b><i>not</i></b> correct this problem.
+    </p>
+  </blockquote>
+
+  <h1>How can I tell if I need to install the .NET framework?</h1>
+  <blockquote>
+    <p>
+      Use the Windows Control Panel -&gt; Add/Remove Programs.&nbsp; Look for Microsoft .NET Framework 4.0 or
+      later.&nbsp; If it's not there, you'll need to
+      <a href="https://dotnet.microsoft.com/download/dotnet-framework" target="_blank" rel="noopener">download</a>
+      and install it.
+    </p>
+  </blockquote>
+
+  <h1>I see the desktop icon and start menu shortcut, but where does Rhythm Rascal get installed?</h1>
+  <blockquote>
+    <p>
+      By default, Rhythm Rascal gets installed under your Program Files folder, under &quot;Rhythm Rascal&quot;.&nbsp;
+      Of course you can change this when you install it.
+    </p>
+  </blockquote>
+
+  <h1>I found a problem with Rhythm Rascal. How do I get it fixed?</h1>
+  <blockquote>
+    <p>Please use the <a href="/contact/">Contact page</a> to report any problems you encounter.</p>
+  </blockquote>
+
+  <h1>I have a good idea for a new feature in Rhythm Rascal. How do I submit a feature request?</h1>
+  <blockquote>
+    <p>Please use the <a href="/contact/">Contact page</a> to submit ideas and suggestions.</p>
+  </blockquote>
+
+  <p class="faqNote">
+    *NOTE: The web links and product suggestions on this page are strictly the opinion of the author.&nbsp; Rhythm
+    Rascal is not affiliated with N-Track, Adobe, or any other linked site in any way.
+  </p>
+</BaseLayout>

@@ -1,0 +1,21 @@
+# Cloudflare Pages redirects
+# https://developers.cloudflare.com/pages/configuration/redirects/
+#
+# Canonical host: send www to the apex domain.
+https://www.rhythmrascal.com/* https://rhythmrascal.com/:splat 301
+
+# Old ASP.NET WebForms URLs from the original site. Cloudflare matches these
+# case-insensitively, so /Features.aspx and /features.aspx both work.
+/default.aspx      /            301
+/features.aspx     /features/   301
+/download.aspx     /download/   301
+/register.aspx     /register/   301
+/samples.aspx      /samples/    301
+/faq.aspx          /faq/        301
+/contact.aspx      /contact/    301
+/aboutauthor.aspx  /about/      301
+/whatsnew.aspx     /whatsnew/   301
+
+# The sample pack moved to a GitHub Release asset (too large for Pages).
+/Download/Samples/Original%20Music%20Free.zip https://github.com/randbrown/rhythmrascalweb/releases/download/assets/Original-Music-Free.zip 301
+/Download/Samples/Original\ Music\ Free.zip    https://github.com/randbrown/rhythmrascalweb/releases/download/assets/Original-Music-Free.zip 301
