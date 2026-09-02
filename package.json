@@ -1,0 +1,16 @@
+{
+  "name": "rhythmrascalweb",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static website for Rhythm Rascal drum machine software",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.0.0"
+  }
+}

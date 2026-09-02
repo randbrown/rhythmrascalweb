@@ -1,0 +1,32 @@
+---
+import { navItems } from '../data/nav';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+const normalize = (p: string) => (p.endsWith('/') ? p : p + '/');
+const current = normalize(currentPath);
+const isCurrent = (href: string) => normalize(href) === current;
+---
+
+<nav class="site-nav" aria-label="Main">
+  <ul>
+    <li>
+      <a href="/" title="Rhythm Rascal Home" aria-current={isCurrent('/') ? 'page' : undefined}>RHYTHM RASCAL</a>
+    </li>
+    {
+      navItems.map((item) => (
+        <li>
+          <a href={item.href} title={item.title} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <a class="download-now" href="/Download/RhythmRascalSetup.zip">
+    <img class="downloadNowImage" src="/images/download_now.png" alt="Download Rhythm Rascal Now" />
+  </a>
+</nav>

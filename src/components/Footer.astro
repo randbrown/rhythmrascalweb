@@ -1,0 +1,23 @@
+---
+import { navItems, supportEmail } from '../data/nav';
+
+const year = new Date().getFullYear();
+// Lightly obfuscate the address in markup the same way the original site did.
+const displayEmail = supportEmail.replace('@', ' [at] ');
+---
+
+<footer class="site-footer">
+  <ul class="footer-nav" aria-label="Footer">
+    {
+      navItems.map((item) => (
+        <li>
+          <a href={item.href} title={item.title}>
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  &copy; 2004&ndash;{year} Randy Brown<br />
+  For problems or questions regarding this Web site contact {displayEmail}
+</footer>

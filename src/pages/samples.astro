@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const myspaceTracks = [
+  { title: 'The Flesh Gallery', id: 'the-flesh-gallery-6824174-6625358' },
+  { title: 'Cast Ye The First Stone', id: 'cast-ye-the-first-stone-6824173-6625357' },
+  { title: 'Bleed', id: 'bleed-6849372-6650556' },
+  { title: 'Tantillus', id: 'tantillus-6824176-6625360' },
+  { title: 'Creator', id: 'creator-6824175-6625359' },
+];
+---
+
+<BaseLayout title="Samples" description="Hear drum tracks and full songs created with Rhythm Rascal drum machine software. Download example projects to open in Rhythm Rascal.">
+  <h1>
+    <a href="https://www.myspace.com/wermod" target="_blank" rel="noopener"><span class="brightLink">Wermod myspace page</span></a>
+    All drum beats were created with Rhythm Rascal.
+  </h1>
+  <div class="player-grid">
+    {
+      myspaceTracks.map((t) => (
+        <iframe
+          title={`${t.title} by Wermod (MySpace player)`}
+          src={`https://myspace.com/play/song/${t.id}`}
+          width="300"
+          height="90"
+          loading="lazy"
+          allowfullscreen
+        />
+      ))
+    }
+  </div>
+
+  <h1>Samples using Rhythm Rascal drum tracks</h1>
+  <p>
+    Download the MP3 files to hear the final results.&nbsp; Download the RRP-ZIP files to open them in Rhythm
+    Rascal.&nbsp; <b><i>Note</i></b>: You may need to right-click the link and choose &quot;Save Target As...&quot;.&nbsp;
+    Once you've downloaded the zip file, you can use Rhythm Rascal's &quot;<i>Tools-&gt;Import project from zip</i>&quot;
+    menu option.&nbsp; Alternatively you can unzip the contents to a folder using WinZip, then open the .rrp file with
+    Rhythm Rascal.
+  </p>
+  <p>
+    <b>Heavy</b>
+    <a href="/music/heavy%20example.zip">rrp-zip</a>
+    <a href="/music/heavy%20example%20mixdown.mp3">mp3</a>
+    (drum track only).&nbsp; This one uses the samples included with the installation.
+  </p>
+  <p>
+    <b>Funky/Rock</b>
+    <a href="/music/funk%20example.zip">rrp-zip</a>
+    <a href="/music/funk%20example%20mixdown.mp3">mp3</a>
+    (drum track only).&nbsp; This one uses the samples included with the installation.
+  </p>
+  <p>
+    <b>Bass/Techno</b>
+    <a href="/music/techno%20example.zip">rrp-zip</a>
+    <a href="/music/techno%20mixdown.mp3">mp3</a>
+    (drum track only).&nbsp; This one uses additional samples not included with the installation.&nbsp; The samples are
+    included in the zip file; Rhythm Rascal will detect them and use them when you open the project.
+  </p>
+
+  <h1>Songs recorded with Rhythm Rascal</h1>
+  <p>
+    <b>The Cursed</b> <a href="/music/The%20Cursed.mp3">mp3</a> Written and recorded by Wermod.
+  </p>
+  <p>
+    <b>Inside</b> <a href="/music/inside.mp3">mp3</a> Written and recorded by Wermod.
+  </p>
+  <p>
+    <b>Heavy Sample Song</b> <a href="/music/SampleSong.mp3">mp3</a> Written and recorded by Wermod. A modified version
+    of this song is included as a sample, &quot;SampleSong.rrp&quot; to get you started with Rhythm Rascal.&nbsp; Watch
+    out! this one's heavy!
+  </p>
+</BaseLayout>

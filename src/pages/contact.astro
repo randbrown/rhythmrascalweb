@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { supportEmail } from '../data/nav';
+
+// The original site posted this form to ASP.NET code-behind that sent an email.
+// A static site has no server, so the form composes a message and opens the
+// visitor's own email client via a mailto: link instead. The address is split
+// into parts and assembled at runtime so it isn't sitting in the page source.
+const [emailUser, emailDomain] = supportEmail.split('@');
+---
+
+<BaseLayout title="Contact Support" description="Contact Rhythm Rascal support with questions, problems, or registration code requests.">
+  <h3>Contact Rhythm Rascal Support</h3>
+  <p>Use the contact form below to submit a question. Clicking <b>Submit</b> will open the message in your email program.</p>
+
+  <form id="contact-form" data-user={emailUser} data-domain={emailDomain} novalidate>
+    <table class="contact-form">
+      <tbody>
+        <tr>
+          <th scope="row"><label for="name">Your Name:</label></th>
+          <td><input type="text" id="name" name="name" autocomplete="name" /></td>
+        </tr>
+        <tr>
+          <th scope="row"><label for="email">Your Email Address:</label></th>
+          <td><input type="email" id="email" name="email" autocomplete="email" /></td>
+        </tr>
+        <tr>
+          <th scope="row"><label for="subject">Subject:</label></th>
+          <td><input type="text" id="subject" name="subject" /></td>
+        </tr>
+        <tr>
+          <th scope="row"><label for="regcode">Registration Code:</label></th>
+          <td><input type="text" id="regcode" name="regcode" /> (optional)</td>
+        </tr>
+        <tr>
+          <th scope="row"><label for="comments">Question or Comments:</label></th>
+          <td><textarea id="comments" name="comments" rows="10" cols="20"></textarea></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="contact-submit">
+            <button type="submit" id="submitButton">Submit</button>
+            <div id="contact-status" class="contact-hint" role="status" aria-live="polite"></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+
+  <p class="contact-hint">
+    If the form doesn't open your email program, you can email
+    <span id="contact-fallback">brown.randy [at] gmail.com</span> directly.
+  </p>
+
+  <script>
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const status = document.getElementById('contact-status') as HTMLElement;
+    const fallback = document.getElementById('contact-fallback') as HTMLElement;
+    const address = `${form.dataset.user}@${form.dataset.domain}`;
+
+    // Turn the obfuscated fallback text into a real link once JS is running.
+    const link = document.createElement('a');
+    link.href = `mailto:${address}`;
+    link.textContent = address;
+    fallback.replaceChildren(link);
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const get = (k: string) => String(data.get(k) ?? '').trim();
+
+      const name = get('name');
+      const email = get('email');
+      const subject = get('subject') || 'Rhythm Rascal support request';
+      const regcode = get('regcode');
+      const comments = get('comments');
+
+      if (!comments) {
+        status.textContent = 'Please enter your question or comments before submitting.';
+        return;
+      }
+
+      const bodyLines = [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        regcode ? `Registration Code: ${regcode}` : null,
+        '',
+        comments,
+      ].filter((l) => l !== null);
+
+      const url =
+        `mailto:${address}` +
+        `?subject=${encodeURIComponent(`[Rhythm Rascal] ${subject}`)}` +
+        `&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+
+      status.textContent = 'Opening your email program...';
+      window.location.href = url;
+    });
+  </script>
+</BaseLayout>

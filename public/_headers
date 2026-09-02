@@ -1,0 +1,19 @@
+# Cloudflare Pages custom headers
+# https://developers.cloudflare.com/pages/configuration/headers/
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Installers, music and images never change once published; let browsers and
+# the Cloudflare edge cache them for a year.
+/Download/*
+  Cache-Control: public, max-age=31536000, immutable
+/music/*
+  Cache-Control: public, max-age=31536000, immutable
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Astro emits content-hashed filenames here.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable

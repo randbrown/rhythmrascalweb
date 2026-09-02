@@ -1,0 +1,53 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { siteName } from '../data/nav';
+
+interface Props {
+  /** Page-specific part of the <title>; omitted on the home page. */
+  title?: string;
+  description?: string;
+}
+
+const defaultDescription =
+  'Rhythm Rascal is a software drum machine for Windows, designed for metal, rock and other traditionally non-electronic music. Create drum tracks with tempo and time signature changes and export to WAV or MIDI.';
+
+const { title, description = defaultDescription } = Astro.props;
+const fullTitle = title ? `${siteName} - ${title}` : siteName;
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={new URL(currentPath, Astro.site)} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={new URL('/images/screenshot2.jpg', Astro.site)} />
+  </head>
+  <body>
+    <div class="site">
+      <header class="site-header">
+        <a href="/" title="Rhythm Rascal Home">
+          <img class="logo-mark" src="/images/rhythm-rascal-logo1_02.jpg" width="170" height="128" alt="" />
+          <img class="logo-wordmark" src="/images/rhythm-rascal-logo1_03.jpg" width="397" height="128" alt="Rhythm Rascal" />
+        </a>
+      </header>
+      <div class="subtitle">Software drum machine for the progressive guitarist</div>
+      <div class="site-body">
+        <Nav currentPath={currentPath} />
+        <main class="site-main clearfix">
+          <slot />
+        </main>
+      </div>
+      <Footer />
+    </div>
+  </body>
+</html>

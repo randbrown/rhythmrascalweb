@@ -1,0 +1,404 @@
+/*
+ * Rhythm Rascal site styles.
+ * Ported from the original StyleSheet.css; table layout replaced with flex
+ * but colors, fonts and dimensions are preserved.
+ */
+
+:root {
+  --color-text: #444;
+  --color-page-bg: #fafafa;
+  --color-panel-bg: #fff;
+  --color-nav-bg: #efefe5;
+  --color-nav-selected: #d8d8c0;
+  --color-accent-bg: #e5ecf9;
+  --color-link: #003572;
+  --color-link-hover-bg: #ffffa8;
+  --color-bright-link: #1f86ff;
+  --color-border: gray;
+  --site-width: 800px;
+  --nav-width: 132px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--color-page-bg);
+}
+
+body {
+  margin: 0;
+  padding: 8px;
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--color-text);
+  background-color: var(--color-page-bg);
+}
+
+h1 {
+  font-size: 13px;
+  margin: 1em 0 0.5em;
+}
+
+h2,
+h3 {
+  font-size: 12px;
+  margin: 1em 0 0.5em;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+ul {
+  padding-left: 2em;
+}
+
+li {
+  margin-bottom: 0.35em;
+}
+
+blockquote {
+  margin: 0.5em 0 1em 2.5em;
+}
+
+a:link,
+a:visited {
+  color: var(--color-link);
+}
+
+a:hover {
+  color: var(--color-link);
+  background-color: var(--color-link-hover-bg);
+  text-decoration: none;
+}
+
+a:active {
+  color: #333;
+}
+
+.brightLink,
+.brightLink a {
+  color: var(--color-bright-link);
+}
+
+.big-link {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.medium-link {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* Layout ------------------------------------------------------------------ */
+
+.site {
+  width: 100%;
+  max-width: var(--site-width);
+  margin: 0 auto;
+  background-color: var(--color-panel-bg);
+  text-align: left;
+}
+
+.site-header {
+  border: solid 1px var(--color-border);
+  border-bottom: none;
+  line-height: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.site-header a {
+  display: block;
+}
+
+.site-header a:hover {
+  background-color: transparent;
+}
+
+.site-header img {
+  display: inline-block;
+  vertical-align: top;
+  height: 128px;
+}
+
+/* The original logo is a 2-slice image: an 8px-wide strip stretched to 170px
+   as a left spacer, followed by the 397px wordmark. Keep those exact sizes. */
+.logo-mark {
+  width: 170px;
+}
+
+.logo-wordmark {
+  width: 397px;
+}
+
+.subtitle {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: italic;
+  font-weight: bold;
+  color: var(--color-link);
+  background-color: var(--color-accent-bg);
+  border-left: solid 1px var(--color-border);
+  border-right: solid 1px var(--color-border);
+}
+
+.site-body {
+  display: flex;
+  align-items: stretch;
+}
+
+.site-nav {
+  flex: 0 0 var(--nav-width);
+  border: solid 1px var(--color-border);
+  background-color: var(--color-nav-bg);
+  padding: 2px 0 12px 2px;
+}
+
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-nav a {
+  display: block;
+  padding: 2px 4px;
+  color: var(--color-link);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-nav a:hover {
+  background-color: var(--color-link-hover-bg);
+}
+
+.site-nav a[aria-current='page'] {
+  background-color: var(--color-nav-selected);
+  color: #fff;
+}
+
+.site-nav a[aria-current='page']:hover {
+  color: var(--color-link);
+}
+
+.site-nav a.download-now {
+  padding: 0;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.site-nav a.download-now:hover {
+  background-color: transparent;
+}
+
+.downloadNowImage {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+}
+
+.site-main {
+  flex: 1 1 auto;
+  min-width: 0;
+  border-right: solid 1px var(--color-border);
+  border-bottom: solid 1px var(--color-border);
+  border-top: solid 1px var(--color-border);
+  padding: 10px;
+}
+
+.site-main > :first-child {
+  margin-top: 0;
+}
+
+.site-main img {
+  max-width: 100%;
+  height: auto;
+}
+
+.site-footer {
+  text-align: center;
+  font-style: italic;
+  font-size: 9px;
+  padding: 15px 0 10px;
+  background-color: var(--color-page-bg);
+}
+
+.footer-nav {
+  list-style: none;
+  margin: 0 0 6px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3px 6px;
+}
+
+.footer-nav a {
+  text-decoration: none;
+}
+
+/* Content helpers --------------------------------------------------------- */
+
+img.floatLeft {
+  float: left;
+  margin: 4px 12px 4px 0;
+}
+
+img.floatRight {
+  float: right;
+  margin: 4px 0 4px 12px;
+}
+
+.clearfix::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.faqNote {
+  text-align: center;
+  font-style: italic;
+  font-size: 9px;
+  padding-top: 15px;
+}
+
+.note-text {
+  color: #0000ff;
+  font-weight: bold;
+}
+
+.sale-text {
+  color: red;
+  font-weight: bold;
+}
+
+.strike-through {
+  text-decoration: line-through;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.importantEmailNote {
+  font-style: italic;
+  color: #0000ff;
+}
+
+/* Contact form ------------------------------------------------------------ */
+
+.contact-form {
+  max-width: 630px;
+  border: solid 1px var(--color-border);
+  border-collapse: collapse;
+  font-size: 10px;
+}
+
+.contact-form th,
+.contact-form td {
+  padding: 5px;
+  vertical-align: top;
+}
+
+.contact-form th {
+  width: 130px;
+  text-align: right;
+  font-weight: normal;
+  background-color: var(--color-accent-bg);
+  color: var(--color-link);
+}
+
+.contact-form input[type='text'],
+.contact-form input[type='email'] {
+  width: 230px;
+  max-width: 100%;
+  font: inherit;
+  font-size: 11px;
+}
+
+.contact-form textarea {
+  width: 450px;
+  max-width: 100%;
+  height: 200px;
+  font: inherit;
+  font-size: 11px;
+}
+
+.contact-submit {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.contact-hint {
+  font-size: 10px;
+  font-style: italic;
+}
+
+/* Samples ----------------------------------------------------------------- */
+
+.player-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 1em;
+}
+
+.player-grid iframe {
+  border: 0;
+  width: 300px;
+  height: 90px;
+  max-width: 100%;
+}
+
+/* Responsive -------------------------------------------------------------- */
+
+@media (max-width: 640px) {
+  .site-body {
+    flex-direction: column;
+  }
+
+  .site-nav {
+    flex-basis: auto;
+    border-bottom: none;
+    padding-bottom: 6px;
+  }
+
+  .site-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 4px;
+  }
+
+  .site-nav a.download-now {
+    margin-top: 6px;
+    text-align: left;
+  }
+
+  .site-main {
+    border-left: solid 1px var(--color-border);
+  }
+
+  .site-header .logo-mark {
+    display: none;
+  }
+
+  .site-header .logo-wordmark {
+    width: 100%;
+    max-width: 397px;
+    height: auto;
+  }
+
+  img.floatRight,
+  img.floatLeft {
+    float: none;
+    display: block;
+    margin: 8px auto;
+  }
+}
