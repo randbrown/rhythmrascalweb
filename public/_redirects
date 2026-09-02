@@ -1,11 +1,12 @@
-# Cloudflare Pages redirects
-# https://developers.cloudflare.com/pages/configuration/redirects/
+# Cloudflare Workers static-assets redirects
+# https://developers.cloudflare.com/workers/static-assets/redirects/
 #
-# Canonical host: send www to the apex domain.
-https://www.rhythmrascal.com/* https://rhythmrascal.com/:splat 301
+# Rules: "<source path> <destination> <status>", one per line. Source must be a
+# relative path (no scheme or host), so a www -> apex redirect cannot live here;
+# see README "Hosting" for the dashboard Redirect Rule that handles it.
 
-# Old ASP.NET WebForms URLs from the original site. Cloudflare matches these
-# case-insensitively, so /Features.aspx and /features.aspx both work.
+# Old ASP.NET WebForms URLs from the original site. Matching is case-insensitive,
+# so /Features.aspx and /features.aspx both work.
 /default.aspx      /            301
 /features.aspx     /features/   301
 /download.aspx     /download/   301
@@ -16,6 +17,5 @@ https://www.rhythmrascal.com/* https://rhythmrascal.com/:splat 301
 /aboutauthor.aspx  /about/      301
 /whatsnew.aspx     /whatsnew/   301
 
-# The sample pack moved to a GitHub Release asset (too large for Pages).
+# The sample pack moved to a GitHub Release asset (too large for Workers assets).
 /Download/Samples/Original%20Music%20Free.zip https://github.com/randbrown/rhythmrascalweb/releases/download/assets/Original-Music-Free.zip 301
-/Download/Samples/Original\ Music\ Free.zip    https://github.com/randbrown/rhythmrascalweb/releases/download/assets/Original-Music-Free.zip 301

@@ -88,18 +88,24 @@ dependency so the deploy step uses a known version.
 
 **Custom domain:** `wrangler.jsonc` declares `rhythmrascal.com` and `www.rhythmrascal.com` as custom
 domains, so the first deploy attaches them and Cloudflare creates DNS records and certificates.
-`public/_redirects` sends `www` to the apex domain.
+The hostnames must have no pre-existing DNS records or the deploy fails.
+
+**www to apex:** `_redirects` on Workers only accepts relative source paths, so the host redirect
+is a zone-level Redirect Rule instead (Cloudflare dashboard, `rhythmrascal.com` zone, Rules,
+Redirect Rules): when hostname equals `www.rhythmrascal.com`, dynamic redirect to
+`concat("https://rhythmrascal.com", http.request.uri.path)` with status 301, preserve query string.
+Without this rule both hostnames simply serve the site; the canonical tag still points at the apex.
 
 **Files Cloudflare reads from the build output:**
 
-- `_redirects`: 301s from the old `.aspx` URLs, `www` to apex, and the moved sample pack.
+- `_redirects`: 301s from the old `.aspx` URLs and the moved sample pack.
 - `_headers`: long-lived immutable caching for installers, music, images, and hashed assets.
 - `404.html` (built from `src/pages/404.astro`) is served for unknown paths via `not_found_handling`.
 
 Every push to `main` deploys production; pushes to other branches upload preview versions.
 
 If the production domain ever changes, update `site` in `astro.config.mjs` (used for canonical and
-Open Graph URLs), the `routes` in `wrangler.jsonc`, and the `www` rule in `public/_redirects`.
+Open Graph URLs), the `routes` in `wrangler.jsonc`, and the `www` Redirect Rule in the dashboard.
 
 To deploy manually from a machine that is logged in with `npx wrangler login`:
 
